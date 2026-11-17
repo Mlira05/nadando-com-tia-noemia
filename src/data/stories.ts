@@ -1,4 +1,5 @@
 import { Story } from '../types';
+import { getAssetUrl } from '../utils/assets';
 
 export const STORIES_DATA: Story[] = [
   {
@@ -7,7 +8,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Aprendendo a nadar',
     subtitle: 'Primeiro contato com a piscina: quebrando o medo e criando confiança mútua.',
     shortDescription: 'Conhecendo a piscina, sentindo a água com os pezinhos e estabelecendo um vínculo seguro com o responsável.',
-    image: './images/historia-aprendendo-nadar.jpg',
+    image: getAssetUrl('images/historia-aprendendo-nadar.jpg'),
     iconName: 'Waves',
     duration: '10 a 15 min',
     level: 'Adaptação Inicial • Nível 1',
@@ -75,7 +76,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Flutuação',
     subtitle: 'Sentindo a leveza do corpo e aprendendo a boiar como uma linda estrelinha.',
     shortDescription: 'Descobrindo como o corpo boia na água, relaxando a musculatura com apoio firme nas costas e no pescoço.',
-    image: './images/historia-flutuacao.jpg',
+    image: getAssetUrl('images/historia-flutuacao.jpg'),
     iconName: 'Compass',
     duration: '10 a 12 min',
     level: 'Flutuação Dorsal • Nível 1',
@@ -136,7 +137,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Respiração',
     subtitle: 'O fascinante segredo das bolhinhas: soltando o ar na água com tranquilidade.',
     shortDescription: 'Aprendendo a soprar na água sem engolir, diferenciando inspirar pela boca fora d’água e expirar fazendo bolhas.',
-    image: './images/historia-respiracao.jpg',
+    image: getAssetUrl('images/historia-respiracao.jpg'),
     iconName: 'Sparkles',
     duration: '8 a 12 min',
     level: 'Controle Respiratório • Nível 1',
@@ -197,7 +198,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Pernada',
     subtitle: 'Motores ligados! O movimento contínuo e alegre dos pezinhos na água.',
     shortDescription: 'Desenvolvendo a propulsão com perninhas retas e flexíveis, usando a pranchinha e o apoio protetor dos responsáveis.',
-    image: './images/historia-pernada.jpg',
+    image: getAssetUrl('images/historia-pernada.jpg'),
     iconName: 'Flame',
     duration: '10 a 15 min',
     level: 'Propulsão de Pernas • Nível 2',
@@ -258,7 +259,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Braçada',
     subtitle: 'Puxando a água com carinho: os primeiros movimentos de braços e deslocamento.',
     shortDescription: 'Descobrindo como as mãozinhas em concha ajudam a puxar a água e movimentar o corpinho com suavidade.',
-    image: './images/historia-bracada.jpg',
+    image: getAssetUrl('images/historia-bracada.jpg'),
     iconName: 'Compass',
     duration: '10 a 15 min',
     level: 'Deslocamento e Braços • Nível 2',
@@ -319,7 +320,7 @@ export const STORIES_DATA: Story[] = [
     title: 'Segurança na água',
     subtitle: 'As regras de ouro da piscina: cuidado, respeito e amor em cada mergulho.',
     shortDescription: 'Regras indispensáveis para nunca brincar sozinho, respeitar as bordas, usar boias adequadas e agir com proteção total.',
-    image: './images/historia-seguranca.jpg',
+    image: getAssetUrl('images/historia-seguranca.jpg'),
     iconName: 'ShieldCheck',
     duration: '10 a 12 min',
     level: 'Educação Preventiva • Essencial',

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, Shield, Heart, Sparkles, Droplets, CheckCircle } from 'lucide-react';
 import { WaveDivider } from '../components/WaterDecorations';
+import { getAssetUrl } from '../utils/assets';
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -16,9 +17,9 @@ export const HomePage: React.FC = () => {
           <span>Natação Infantil Pedagógica Guiada por Pais</span>
         </div>
 
-        {/* Brand Title (matching reference image style) */}
+        {/* Brand Title */}
         <div className="mb-4">
-          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-ocean-900 tracking-tight leading-tight">
+          <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-ocean-950 tracking-tight leading-tight">
             Nadando com a{' '}
             <span className="relative inline-block text-ocean-600 drop-shadow-sm">
               Tia Noêmia
@@ -45,14 +46,19 @@ export const HomePage: React.FC = () => {
           <div className="absolute -inset-3 bg-gradient-to-r from-ocean-300 via-sky-200 to-aqua-300 rounded-[2.5rem] blur-xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
           
           <div className="relative rounded-[2rem] overflow-hidden border-4 border-white shadow-bubble bg-ocean-50 aspect-square">
-            <img
-              src="./images/hero.jpg"
-              alt="Tia Noêmia na piscina com uma criança sorrindo"
-              className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-            />
+            <picture>
+              <source srcSet={getAssetUrl('images/hero.webp')} type="image/webp" />
+              <img
+                src={getAssetUrl('images/hero.jpg')}
+                alt="Tia Noêmia na piscina com uma criança sorrindo"
+                className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
             
             {/* Soft decorative bottom badge */}
-            <div className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md rounded-2xl p-2.5 border border-white/80 shadow-md flex items-center justify-center gap-2 text-xs font-black text-ocean-900">
+            <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 border border-white/80 shadow-md flex items-center justify-center gap-2 text-xs font-black text-ocean-950">
               <Sparkles className="w-4 h-4 text-sun-500 fill-sun-400" />
               <span>Aprenda a nadar com afeto, técnica e segurança</span>
             </div>
@@ -77,7 +83,7 @@ export const HomePage: React.FC = () => {
           </button>
         </div>
 
-        {/* Three Value Pillars (inspired by screen 2 in reference image) */}
+        {/* Three Value Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl mt-4 text-left">
           <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-ocean-100 shadow-sm flex items-start gap-3">
             <div className="w-9 h-9 rounded-xl bg-ocean-100 text-ocean-700 flex items-center justify-center shrink-0">

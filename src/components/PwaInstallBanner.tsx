@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Sparkles } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -57,7 +58,7 @@ export const PwaInstallBanner: React.FC = () => {
       <div className="bg-white rounded-2xl p-4 shadow-2xl border-2 border-sun-400 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <img
-            src="./images/app-icon.jpg"
+            src={getAssetUrl('images/app-icon.jpg')}
             alt="App Tia Noêmia"
             className="w-11 h-11 rounded-xl object-cover border border-ocean-200 shrink-0 shadow-sm"
           />

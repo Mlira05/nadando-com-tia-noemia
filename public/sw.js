@@ -1,23 +1,17 @@
-const CACHE_NAME = 'tia-noemia-cache-v1';
-const STATIC_ASSETS = [
+const CACHE_NAME = 'tia-noemia-cache-v2';
+const CORE_ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './favicon.ico',
-  './favicon.png',
-  './images/app-icon.jpg',
-  './images/hero.jpg',
-  './images/familia.jpg',
-  './images/tartaruga.jpg',
-  './images/peixinho.jpg',
-  './images/golfinho.jpg'
+  './favicon.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn('Pre-cache partial failure:', err);
+      return cache.addAll(CORE_ASSETS).catch((err) => {
+        console.warn('Core asset pre-cache error:', err);
       });
     })
   );
@@ -40,12 +34,11 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
 
-  // Network first for HTML navigation, cache first for static images and assets
+  // HTML navigation fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(() => {
@@ -55,30 +48,32 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Cache-first for images, fonts, and scripts
+  if (
+    event.request.destination === 'image' ||
+    event.request.destination === 'font' ||
+    event.request.destination === 'script' ||
+    event.request.destination === 'style'
+  ) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request)
+          .then((response) => {
+            if (response && response.status === 200) {
+              const clone = response.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            }
+            return response;
+          })
+          .catch(() => cached);
+      })
+    );
+    return;
+  }
+
+  // Network-first with cache fallback for other resources
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((networkResponse) => {
-        if (
-          !networkResponse ||
-          networkResponse.status !== 200 ||
-          networkResponse.type !== 'basic'
-        ) {
-          return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-        return networkResponse;
-      }).catch(() => {
-        // Fallback for image requests if offline
-        if (event.request.destination === 'image') {
-          return caches.match('./images/app-icon.jpg');
-        }
-      });
-    })
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldAlert, Heart, Key, Phone, CheckCircle } from 'lucide-react';
+import { ShieldAlert, Heart, Phone, MessageCircle, MapPin, Clock } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { getAssetUrl } from '../utils/assets';
 
 export const Footer: React.FC = () => {
-  const { openSafetyModal, isStudent, loginWithCode, logout } = useApp();
+  const { openSafetyModal } = useApp();
 
   return (
     <footer className="relative bg-gradient-to-b from-ocean-800 to-ocean-950 text-white pt-12 pb-24 md:pb-12 mt-16 overflow-hidden">
@@ -46,9 +47,10 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-3">
               <img
-                src="./images/app-icon.jpg"
+                src={getAssetUrl('images/app-icon.jpg')}
                 alt="Logo Tia Noêmia"
                 className="w-10 h-10 rounded-full border-2 border-sun-400 object-cover"
+                loading="lazy"
               />
               <span className="font-display font-black text-lg text-white">
                 Nadando com a Tia Noêmia
@@ -100,43 +102,29 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Demo student code quick switch */}
+          {/* Contact & Attendance */}
           <div>
-            <h5 className="font-display font-bold text-sm text-sun-300 mb-3 uppercase tracking-wider flex items-center gap-1.5">
-              <Key className="w-4 h-4" /> Modo Demonstração
+            <h5 className="font-display font-bold text-sm text-sun-300 mb-3 uppercase tracking-wider">
+              Atendimento
             </h5>
-            <p className="text-xs text-slate-300 mb-3">
-              {isStudent ? (
-                <span className="text-emerald-300 flex items-center gap-1">
-                  <CheckCircle className="w-3.5 h-3.5" /> Você está conectado como aluno!
-                </span>
-              ) : (
-                'Teste o desbloqueio com os códigos demonstrativos:'
-              )}
-            </p>
-            <div className="space-y-1.5">
-              <button
-                onClick={() => loginWithCode('NOEMIA2025')}
-                className="w-full text-left px-2.5 py-1.5 rounded-lg bg-ocean-900/80 hover:bg-ocean-700/80 border border-ocean-700 text-[11px] text-ocean-200 font-mono transition-colors flex items-center justify-between"
-              >
-                <span>NOEMIA2025</span>
-                <span className="text-[10px] text-sun-400 font-sans">Super Nadador</span>
-              </button>
-              <button
-                onClick={() => loginWithCode('NADAR123')}
-                className="w-full text-left px-2.5 py-1.5 rounded-lg bg-ocean-900/80 hover:bg-ocean-700/80 border border-ocean-700 text-[11px] text-ocean-200 font-mono transition-colors flex items-center justify-between"
-              >
-                <span>NADAR123</span>
-                <span className="text-[10px] text-sun-400 font-sans">Pequeno Nadador</span>
-              </button>
-              {isStudent && (
-                <button
-                  onClick={logout}
-                  className="text-[11px] text-rose-300 hover:underline pt-1 block"
+            <div className="space-y-2.5 text-xs text-slate-300">
+              <div className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-sun-400 shrink-0 mt-0.5" />
+                <span>Segunda a Sábado, das 8h às 18h</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-sun-400 shrink-0 mt-0.5" />
+                <span>Aulas presenciais em piscinas parceiras credenciadas</span>
+              </div>
+              <div className="pt-1">
+                <Link
+                  to="/planos"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold hover:bg-emerald-500/30 transition-colors"
                 >
-                  Voltar para modo visitante
-                </button>
-              )}
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Falar com a Tia Noêmia</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -146,7 +134,7 @@ export const Footer: React.FC = () => {
           <p>© {new Date().getFullYear()} Nadando com a Tia Noêmia. Todos os direitos reservados.</p>
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1 text-slate-400">
-              <Phone className="w-3 h-3" /> Fale com a Tia Noêmia
+              <Phone className="w-3 h-3" /> Suporte aos Pais
             </span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">PWA Offline Pronto</span>

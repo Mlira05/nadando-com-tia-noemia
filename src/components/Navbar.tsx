@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Compass, Sparkles, Shield, User, LogOut, CheckCircle2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { getAssetUrl } from '../utils/assets';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
@@ -22,9 +23,10 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-3 group focus:outline-none">
             <div className="relative">
               <img
-                src="./images/app-icon.jpg"
+                src={getAssetUrl('images/app-icon.jpg')}
                 alt="Tia Noêmia Avatar"
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-sun-400 shadow-md group-hover:scale-105 transition-transform"
+                loading="eager"
               />
               <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></span>
             </div>
@@ -33,11 +35,8 @@ export const Navbar: React.FC = () => {
                 <span className="text-xs font-bold uppercase tracking-wider text-ocean-600 font-display">
                   Natação Infantil
                 </span>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-sun-100 text-sun-800">
-                  MVP
-                </span>
               </div>
-              <h1 className="text-base sm:text-xl font-display font-black text-ocean-900 tracking-tight leading-tight group-hover:text-ocean-600 transition-colors">
+              <h1 className="text-base sm:text-xl font-display font-black text-ocean-950 tracking-tight leading-tight group-hover:text-ocean-600 transition-colors">
                 Nadando com a Tia Noêmia
               </h1>
             </div>
@@ -101,7 +100,7 @@ export const Navbar: React.FC = () => {
                 </div>
                 <button
                   onClick={logout}
-                  title="Sair do modo aluno"
+                  title="Sair da conta"
                   className="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
@@ -120,7 +119,7 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Bottom Navigation Bar (like reference image screen 3) */}
+      {/* Mobile Bottom Navigation Bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t border-ocean-100 shadow-[0_-4px_16px_rgba(0,0,0,0.05)] safe-bottom">
         <div className="grid grid-cols-4 max-w-md mx-auto">
           <Link

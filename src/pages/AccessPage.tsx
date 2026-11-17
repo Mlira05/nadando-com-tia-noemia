@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { KeyRound, Compass, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { getAssetUrl } from '../utils/assets';
 
 export const AccessPage: React.FC = () => {
   const navigate = useNavigate();
@@ -20,11 +21,6 @@ export const AccessPage: React.FC = () => {
     }
   };
 
-  const fillDemoCode = (code: string) => {
-    setStudentCodeInput(code);
-    setErrorMessage('');
-  };
-
   return (
     <div className="max-w-md mx-auto px-4 py-6 sm:py-10 animate-fade-in">
       {/* Title */}
@@ -36,17 +32,22 @@ export const AccessPage: React.FC = () => {
           Como deseja entrar?
         </h2>
         <p className="text-xs sm:text-sm text-slate-600 mt-1">
-          Acesse como aluno matriculado ou conheça a plataforma como visitante.
+          Acesse com sua matrícula de aluno ou conheça a plataforma como visitante.
         </p>
       </div>
 
       {/* Welcoming Family Card Illustration */}
       <div className="relative rounded-3xl overflow-hidden border-2 border-white shadow-card-soft bg-ocean-50 mb-6 aspect-[4/3]">
-        <img
-          src="./images/familia.jpg"
-          alt="Família acolhedora na piscina"
-          className="w-full h-full object-cover"
-        />
+        <picture>
+          <source srcSet={getAssetUrl('images/familia.webp')} type="image/webp" />
+          <img
+            src={getAssetUrl('images/familia.jpg')}
+            alt="Família acolhedora na piscina"
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-ocean-950/60 via-transparent to-transparent flex items-end p-4">
           <div className="text-white text-xs font-bold flex items-center gap-1.5 drop-shadow">
             <ShieldCheck className="w-4 h-4 text-sun-300" />
@@ -85,7 +86,7 @@ export const AccessPage: React.FC = () => {
         </div>
 
         <p className="text-xs text-slate-500 leading-relaxed mb-4">
-          Alunos com acesso à plataforma recebem um código exclusivo fornecido pela Tia Noêmia para liberar todos os conteúdos.
+          Alunos com acesso à plataforma recebem um código exclusivo fornecido pela Tia Noêmia no momento da matrícula.
         </p>
 
         <form onSubmit={handleStudentLogin} className="space-y-3">
@@ -94,7 +95,7 @@ export const AccessPage: React.FC = () => {
               type="text"
               value={studentCodeInput}
               onChange={(e) => setStudentCodeInput(e.target.value.toUpperCase())}
-              placeholder="Digite seu código de aluno"
+              placeholder="Digite o código do aluno"
               className="w-full px-4 py-3 rounded-2xl border-2 border-slate-200 text-sm font-mono tracking-wider focus:outline-none focus:border-ocean-500 uppercase placeholder:normal-case placeholder:font-sans placeholder:text-slate-400"
             />
             {errorMessage && (
@@ -110,29 +111,6 @@ export const AccessPage: React.FC = () => {
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
-
-        {/* Demo Code Helper */}
-        <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500">
-          <span className="font-bold text-ocean-900 block mb-1.5">
-            💡 Código demonstrativo local para testes:
-          </span>
-          <div className="flex flex-wrap gap-1.5">
-            <button
-              type="button"
-              onClick={() => fillDemoCode('NOEMIA2025')}
-              className="px-2.5 py-1 rounded-lg bg-ocean-50 hover:bg-ocean-100 border border-ocean-200 font-mono text-ocean-700 font-bold transition-colors"
-            >
-              NOEMIA2025
-            </button>
-            <button
-              type="button"
-              onClick={() => fillDemoCode('NADAR123')}
-              className="px-2.5 py-1 rounded-lg bg-ocean-50 hover:bg-ocean-100 border border-ocean-200 font-mono text-ocean-700 font-bold transition-colors"
-            >
-              NADAR123
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Option 2: Explorar o app (Visitante) */}
@@ -144,7 +122,7 @@ export const AccessPage: React.FC = () => {
           Explorar o app
         </h3>
         <p className="text-xs text-slate-600 leading-relaxed mb-4 max-w-xs mx-auto">
-          Conheça as historinhas, os conteúdos educativos e a proposta da plataforma sem precisar criar uma conta ou código.
+          Conheça as historinhas, os conteúdos educativos e a proposta da plataforma sem precisar criar uma conta.
         </p>
 
         <button

@@ -65,6 +65,8 @@ export const StoryDetailPage: React.FC = () => {
             src={story.image}
             alt={story.title}
             className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4 sm:p-6">
             <div className="text-white space-y-1">
@@ -160,7 +162,7 @@ export const StoryDetailPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Aviso de Segurança (Requirement 7) */}
+          {/* Aviso de Segurança */}
           <div className="p-4 rounded-2xl bg-rose-50 border-2 border-rose-200 flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
             <div className="space-y-1 text-xs text-rose-950">
@@ -171,7 +173,7 @@ export const StoryDetailPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Restrição de Acesso / Botão Começar Historinha (Section 7) */}
+      {/* Restrição de Acesso / Botão Começar Historinha */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-ocean-100 shadow-card-soft text-center mb-8">
         {isStudent ? (
           /* Unlocked for active student */
@@ -222,19 +224,6 @@ export const StoryDetailPage: React.FC = () => {
                 className="text-xs sm:text-sm font-bold text-ocean-700 hover:text-ocean-900 underline underline-offset-4 transition-colors"
               >
                 Adquirir um plano
-              </Link>
-            </div>
-
-            {/* Helper for demo student code */}
-            <div className="pt-3 border-t border-slate-100">
-              <span className="text-[11px] text-slate-400 block mb-1">
-                Já possui o código fornecido pela Tia Noêmia?
-              </span>
-              <Link
-                to="/acesso"
-                className="text-xs font-bold text-sun-600 hover:text-sun-700 underline"
-              >
-                Inserir código do aluno
               </Link>
             </div>
           </div>

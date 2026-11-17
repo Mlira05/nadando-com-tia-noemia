@@ -1,4 +1,5 @@
 import { Plan } from '../types';
+import { getAssetUrl } from '../utils/assets';
 
 export const PLANS_DATA: Plan[] = [
   {
@@ -7,7 +8,7 @@ export const PLANS_DATA: Plan[] = [
     tagline: 'Ideal para pais que desejam guiar os primeiros passos na água em casa ou no clube.',
     mascot: 'tartaruga',
     mascotName: 'Tatty, a Tartaruguinha',
-    mascotImage: './images/tartaruga.jpg',
+    mascotImage: getAssetUrl('images/tartaruga.jpg'),
     highlight: false,
     prices: {
       mensal: {
@@ -45,7 +46,7 @@ export const PLANS_DATA: Plan[] = [
     tagline: 'Combinação perfeita: orientação digital em família + aula presencial semanal.',
     mascot: 'peixinho',
     mascotName: 'Peixinho Dourado',
-    mascotImage: './images/peixinho.jpg',
+    mascotImage: getAssetUrl('images/peixinho.jpg'),
     highlight: false,
     prices: {
       mensal: {
@@ -83,7 +84,7 @@ export const PLANS_DATA: Plan[] = [
     tagline: 'Maior frequência e rápida evolução com duas aulas presenciais por semana!',
     mascot: 'golfinho',
     mascotName: 'Delfi, o Golfinho',
-    mascotImage: './images/golfinho.jpg',
+    mascotImage: getAssetUrl('images/golfinho.jpg'),
     highlight: true,
     highlightLabel: 'Maior frequência de aulas',
     prices: {

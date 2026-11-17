@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Star, ChevronRight, Lock, CheckCircle2, Sparkles, Droplets } from 'lucide-react';
 import { STORIES_DATA } from '../data/stories';
 import { useApp } from '../context/AppContext';
+import { getAssetUrl } from '../utils/assets';
 
 export const ExplorePage: React.FC = () => {
   const navigate = useNavigate();
@@ -16,15 +17,16 @@ export const ExplorePage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 sm:py-10 animate-fade-in">
-      {/* User Greeting & Header (matching screen 3 of reference image) */}
+      {/* User Greeting & Header */}
       <div className="bg-gradient-to-r from-ocean-500 via-ocean-600 to-sky-600 rounded-3xl p-6 text-white shadow-bubble mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <div className="relative">
               <img
-                src="./images/app-icon.jpg"
+                src={getAssetUrl('images/app-icon.jpg')}
                 alt="Tia Noêmia"
                 className="w-14 h-14 rounded-full object-cover border-2 border-sun-400 shadow-md"
+                loading="eager"
               />
               <span className="absolute -bottom-1 -right-1 text-base">👋</span>
             </div>
@@ -65,7 +67,7 @@ export const ExplorePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Journey Progress Bar (Screen 3 style) */}
+        {/* Journey Progress Bar */}
         <div className="mt-5 pt-4 border-t border-white/20">
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="flex items-center gap-1.5 font-bold text-sun-300">
@@ -85,7 +87,7 @@ export const ExplorePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Section Title & Subtitle (from prompt requirement 6) */}
+      {/* Section Title & Subtitle */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Droplets className="w-5 h-5 text-ocean-600" />
@@ -108,7 +110,7 @@ export const ExplorePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Story Cards Grid (Requirement 6: 6 cards illustrated and navigable) */}
+      {/* Story Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
         {STORIES_DATA.map((story) => {
           const isDone = completedStories.includes(story.slug);
@@ -124,6 +126,8 @@ export const ExplorePage: React.FC = () => {
                   src={story.image}
                   alt={story.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Level badge */}
@@ -174,7 +178,7 @@ export const ExplorePage: React.FC = () => {
         })}
       </div>
 
-      {/* Discrete Underlined Link at Bottom (Requirement 6) */}
+      {/* Discrete Underlined Link at Bottom */}
       <div className="text-center pt-4 pb-2">
         <Link
           to="/planos"

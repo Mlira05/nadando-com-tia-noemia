@@ -130,7 +130,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       console.error(e);
     }
     setStudentSession(null);
-    showToast('Você está navegando no modo visitante.');
+    showToast('Você saiu da sua conta.');
   };
 
   const markStoryCompleted = (slug: string) => {
